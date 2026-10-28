@@ -23,15 +23,19 @@ Rust/WASM frontend.
   rejected at compile time.
 - **Fast startup.** The container becomes healthy in seconds, which keeps
   worker scale-up/scale-down responsive.
-- **Compact multi-arch image.** Around 440 MB uncompressed for both
-  `linux/amd64` and `linux/arm64`.
+- **Compact architecture-specific image.** Around 440 MB uncompressed for
+  both `linux/amd64` and `linux/arm64`.
 
 ## Setup
 
 ### 1. Download the image
 
 ```bash
-docker pull ghcr.io/suryandi-wijaya/etl-rust:latest
+# Intel/AMD64:
+docker pull ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
+
+# Apple Silicon/ARM64:
+docker pull ghcr.io/suryandi-wijaya/etl-rust:latest-arm64
 ```
 
 If the pull is denied, the package may still be private or the visibility change
@@ -71,7 +75,7 @@ services:
       retries: 5
 
   etl-studio:
-    image: ghcr.io/suryandi-wijaya/etl-rust:latest
+    image: ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
     restart: unless-stopped
     ports:
       - "8787:8787"
@@ -93,7 +97,7 @@ services:
         condition: service_healthy
 
   scheduler:
-    image: ghcr.io/suryandi-wijaya/etl-rust:latest
+    image: ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
     restart: unless-stopped
     depends_on:
       etl-studio:
@@ -107,7 +111,7 @@ services:
       - etl-data:/data
 
   worker:
-    image: ghcr.io/suryandi-wijaya/etl-rust:latest
+    image: ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
     restart: unless-stopped
     depends_on:
       etl-studio:
@@ -171,7 +175,7 @@ Yes. macOS / Linux:
 docker volume create etl-data
 docker run -d --name etl-studio --restart unless-stopped \
   -p 8787:8787 -v etl-data:/data \
-  ghcr.io/suryandi-wijaya/etl-rust:latest
+  ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
 ```
 
 Windows PowerShell:
@@ -180,7 +184,7 @@ Windows PowerShell:
 docker volume create etl-data
 docker run -d --name etl-studio --restart unless-stopped `
   -p 8787:8787 -v etl-data:/data `
-  ghcr.io/suryandi-wijaya/etl-rust:latest
+  ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
 ```
 
 Scheduled/queued runs need the scheduler and worker services from the YAML
@@ -241,16 +245,23 @@ docker compose pull
 docker compose up -d
 ```
 
-Pin a version in the YAML (`:0.1.0` instead of `:latest`) for reproducible
-deployments. Data stays in the volumes.
+Tags are **architecture-specific**: `latest-amd64` or `latest-arm64`. The
+compose example uses `latest-amd64`; on Apple Silicon change it to
+`latest-arm64`. Set `ETL_IMAGE` in `.env` to keep the override in one place.
+Data stays in the volumes.
 </details>
 
 <details>
 <summary><strong>Apple Silicon / arm64?</strong></summary>
 
-The image is multi-arch (`linux/amd64` + `linux/arm64`), so no `--platform` flag
-is needed. If your Docker or registry mirror lacks arm64, pull with
-`--platform linux/amd64`.
+Use the arm64 tag on Apple Silicon:
+
+```bash
+docker pull ghcr.io/suryandi-wijaya/etl-rust:latest-arm64
+```
+
+In Compose set `ETL_IMAGE=ghcr.io/suryandi-wijaya/etl-rust:latest-arm64` (the
+default is the amd64 tag). There is no multi-arch `latest` tag by design.
 </details>
 
 <details>
@@ -368,8 +379,12 @@ make dev-ui     # terminal 2: incremental Trunk UI, mounted into the dev stack
 <details>
 <summary><strong>How are image releases published?</strong></summary>
 
-Manually: **Actions → Publish GHCR (multi-arch, manual) → Run workflow** with a
-version tag. Pushing to `main` does not publish an image.
+Manually:
+- **amd64:** Actions → **Publish GHCR (latest-amd64, manual)** → Run workflow.
+- **arm64:** run `./scripts/publish-local-arm.sh` on an Apple Silicon Mac.
+
+Each build publishes only one tag: `latest-amd64` or `latest-arm64`. Pushing to
+`main` does not publish an image.
 </details>
 
 ## License
