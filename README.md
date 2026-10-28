@@ -6,7 +6,7 @@ Rust/WASM frontend.
 ![ETL Studio](docs/screenshots/canvas.png)
 
 > **Container image:** `ghcr.io/suryandi-wijaya/etl-rust` — public.
-> The source repository stays private.
+> This repository holds the public setup guide; the application source code is private.
 
 ## Why Rust?
 
