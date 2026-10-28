@@ -52,23 +52,6 @@ services:
     volumes:
       - etl-data:/data
 
-  worker:
-    image: ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
-    restart: unless-stopped
-    depends_on:
-      etl-studio:
-        condition: service_healthy
-    environment:
-      ETL_ROLE: worker
-      ETL_ROOT: /data
-      ETL_EXECUTION_MODE: queue
-      ETL_WORKER_CONCURRENCY: "1"
-      ETL_WORKER_RETIRE_WHEN_EMPTY: "0"
-      ETL_NODE_RETRY_ATTEMPTS: "1"
-      ETL_NODE_RETRY_DELAY_MS: "500"
-    volumes:
-      - etl-data:/data
-
 volumes:
   etl-data:
   etl-pg:
