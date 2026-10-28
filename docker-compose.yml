@@ -1,0 +1,74 @@
+name: etl-studio
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: etl
+      POSTGRES_PASSWORD: ${ETL_PG_PASSWORD:-change-me-postgres}
+      POSTGRES_DB: etl
+    volumes:
+      - etl-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U etl -d etl"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  etl-studio:
+    image: ghcr.io/suryandi-wijaya/etl-rust:latest
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    environment:
+      ETL_SEED_ADMIN_PASSWORD: ${ETL_SEED_ADMIN_PASSWORD:-}
+      ETL_EXECUTION_MODE: queue
+      ETL_SCHEDULER_ENABLED: "0"
+      ETL_ALLOW_MANAGED_WORKERS: "0"
+      ETL_ALLOW_EXTERNAL_WORKER_CREATION: "1"
+      ETL_NODE_RETRY_ATTEMPTS: "1"
+      ETL_NODE_RETRY_DELAY_MS: "500"
+      ETL_DATABASE_URL: "postgres://etl:${ETL_PG_PASSWORD:-change-me-postgres}@postgres:5432/etl"
+      ETL_PG_SYNC_SECS: "5"
+    volumes:
+      - etl-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  scheduler:
+    image: ghcr.io/suryandi-wijaya/etl-rust:latest
+    restart: unless-stopped
+    depends_on:
+      etl-studio:
+        condition: service_healthy
+    environment:
+      ETL_ROLE: scheduler
+      ETL_ROOT: /data
+      ETL_EXECUTION_MODE: queue
+      ETL_SCHEDULER_INTERVAL_SECS: "20"
+    volumes:
+      - etl-data:/data
+
+  worker:
+    image: ghcr.io/suryandi-wijaya/etl-rust:latest
+    restart: unless-stopped
+    depends_on:
+      etl-studio:
+        condition: service_healthy
+    environment:
+      ETL_ROLE: worker
+      ETL_ROOT: /data
+      ETL_EXECUTION_MODE: queue
+      ETL_WORKER_CONCURRENCY: "1"
+      ETL_WORKER_RETIRE_WHEN_EMPTY: "0"
+      ETL_NODE_RETRY_ATTEMPTS: "1"
+      ETL_NODE_RETRY_DELAY_MS: "500"
+    volumes:
+      - etl-data:/data
+
+volumes:
+  etl-data:
+  etl-pg:
