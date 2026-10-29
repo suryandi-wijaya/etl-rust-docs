@@ -393,6 +393,11 @@ Every image release updates this section. Newest version first.
 - Operations adds richer run details, filters, queue metrics, failure alerts, and
   a compact execution-history grid.
 - The data preview dock is vertically resizable; output columns render as a list.
+- Pipelines and chains are renamed from Designer only.
+- Join can select output columns from both input tables for the next node.
+- System and Operations screens are redesigned for daily operations.
+- UI-created workers are grouped under the Compose project and retire durably.
+- Docker builds reuse one image and Cargo/BuildKit caches for faster rebuilds.
 
 ### 0.2.0 — 2026-10-28
 
