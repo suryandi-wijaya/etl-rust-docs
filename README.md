@@ -367,6 +367,10 @@ make dev-ui     # terminal 2: incremental Trunk UI, mounted into the dev stack
 <details>
 <summary><strong>How are image releases published?</strong></summary>
 
+Before triggering a build, update the **Changelog** section below with the new
+version and replace the light-theme screenshot in `docs/screenshots/canvas.png`
+if the UI changed.
+
 Manually:
 - **amd64:** Actions → **Publish GHCR (latest-amd64, manual)** → Run workflow.
 - **arm64:** run `./scripts/publish-local-arm.sh` on an Apple Silicon Mac.
@@ -374,6 +378,35 @@ Manually:
 Each build publishes only one tag: `latest-amd64` or `latest-arm64`. Pushing to
 `main` does not publish an image.
 </details>
+
+## Changelog
+
+Every image release updates this section. Newest version first.
+
+### 0.3.0 — 2026-10-29
+
+- Connection edit now restores non-secret values; secrets remain write-only.
+- Test connection is available from the connection card, create form, and edit form.
+- GCP connectors support service-account JSON for GCS, BigQuery, and Pub/Sub.
+- PostgreSQL, Redshift, and MySQL sources can pick table names from metadata and
+  use an optional soft sample limit.
+- Operations adds richer run details, filters, queue metrics, failure alerts, and
+  a compact execution-history grid.
+- The data preview dock is vertically resizable; output columns render as a list.
+
+### 0.2.0 — 2026-10-28
+
+- Deploy console with per-asset diff and deploy log.
+- Kafka and Pub/Sub micro-batch streaming with checkpoints, ack, and dedupe.
+- Excel, XML, MongoDB, JSON flatten/unnest, text tools, and window nodes.
+- HTTP pagination/auth connectors and a reorganized node catalog.
+- System page split into Server, Workers, and Logs tabs.
+- Workers are created from the UI and retire cleanly outside Compose.
+
+### 0.1.0 — 2026-10-24
+
+- Initial ETL Studio image: Rust/axum backend, Rust/WASM UI, pipeline canvas,
+  transformations, connectors, RBAC, scheduler, and Docker deployment.
 
 ## License
 
