@@ -400,13 +400,13 @@ Every image release updates this section. Newest version first.
 - Pipelines and chains are renamed from Designer only.
 - Join can select output columns from both input tables for the next node.
 - System and Operations screens are redesigned for daily operations.
-- UI-created workers are grouped under the Compose project and retire durably.
 - Docker builds reuse one image and Cargo/BuildKit caches for faster rebuilds.
 - Both AMD64 and ARM64 images are built on GitHub Actions.
 - File nodes can upload a CSV/Excel/JSON file from the local computer and select it.
 - GCP connectors accept either an access token or service-account JSON.
 - Full database runs read all rows up to the configured maximum; sample rows is preview-only.
 - UI-created workers remain standalone containers.
+- Operations history shows run dates and times directly above the grid.
 
 ### 0.2.0 — 2026-10-28
 
