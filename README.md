@@ -408,6 +408,7 @@ Every image release updates this section. Newest version first.
 - UI-created workers remain standalone containers.
 - Operations history shows run dates and times directly above the grid.
 - Queue-mode Run lets the operator choose a worker or create one when none is online.
+- Worker pools autoscale from zero with CPU, memory and disk limits for manual runs and schedules.
 - Removed the `ETL_MAX_ROWS` environment parameter; the engine uses a fixed row guard.
 
 ### 0.2.0 — 2026-10-28
