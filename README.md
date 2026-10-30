@@ -347,8 +347,9 @@ Access to the private repository is required.
 ```bash
 git clone https://github.com/suryandi-wijaya/etl-rust.git
 cd etl-rust
-make dev        # Docker queue stack: web + scheduler + worker + autoscaler
-make dev-ui     # terminal 2: incremental Trunk UI, mounted into the dev stack
+make dev        # native web process: no Docker image build, runs inline
+make dev-ui     # terminal 2: incremental Trunk UI on http://127.0.0.1:8080
+make dev-docker # full Docker queue stack with scheduler and workers
 ```
 </details>
 
@@ -371,12 +372,15 @@ Before triggering a build, update the **Changelog** section below with the new
 version and replace the light-theme screenshot in `docs/screenshots/canvas.png`
 if the UI changed.
 
-Manually:
-- **amd64:** Actions → **Publish GHCR (latest-amd64, manual)** → Run workflow.
-- **arm64:** run `./scripts/publish-local-arm.sh` on an Apple Silicon Mac.
+Manually: Actions → **Publish GHCR (manual)** → Run workflow.
+
+The matrix builds both architectures on native GitHub runners:
+- **amd64:** `ubuntu-latest`
+- **arm64:** `ubuntu-24.04-arm`
 
 Each build publishes only one tag: `latest-amd64` or `latest-arm64`. Pushing to
-`main` does not publish an image.
+`main` does not publish an image. Local Mac development uses `make dev` without
+building a Docker image.
 </details>
 
 ## Changelog
@@ -398,6 +402,11 @@ Every image release updates this section. Newest version first.
 - System and Operations screens are redesigned for daily operations.
 - UI-created workers are grouped under the Compose project and retire durably.
 - Docker builds reuse one image and Cargo/BuildKit caches for faster rebuilds.
+- Both AMD64 and ARM64 images are built on GitHub Actions.
+- File nodes can upload a CSV/Excel/JSON file from the local computer and select it.
+- GCP connectors accept either an access token or service-account JSON.
+- Full database runs read all rows up to the configured maximum; sample rows is preview-only.
+- UI-created workers remain standalone containers.
 
 ### 0.2.0 — 2026-10-28
 
