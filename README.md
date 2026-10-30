@@ -407,6 +407,7 @@ Every image release updates this section. Newest version first.
 - Full database runs read all rows up to the configured maximum; sample rows is preview-only.
 - UI-created workers remain standalone containers.
 - Operations history shows run dates and times directly above the grid.
+- Queue-mode Run lets the operator choose a worker or create one when none is online.
 - Removed the `ETL_MAX_ROWS` environment parameter; the engine uses a fixed row guard.
 
 ### 0.2.0 — 2026-10-28
