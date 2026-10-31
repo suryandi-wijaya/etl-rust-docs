@@ -458,3 +458,5 @@ The live run view tails recent node logs and the job-level error below the read-
 Running jobs can be stopped from Operations; workers cancel between nodes/chunks and mark the job canceled.
 
 Live streaming runs report per-chunk source/sink row movement in the Operations graph and current-node counters.
+
+Worker cards in Operations can force-stop or restart a worker; force-stop fails its running jobs so they can be retried.
