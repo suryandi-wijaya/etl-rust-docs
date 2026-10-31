@@ -393,6 +393,7 @@ Every image release updates this section. Newest version first.
 - Test connection is available from the connection card, create form, and edit form.
 - GCP connectors support service-account JSON for GCS, BigQuery, and Pub/Sub.
 - Non-GCP cloud connectors (S3, Redshift, Azure Blob, Snowflake) are hidden until live-tested.
+- Workers belong to pools; a Default pool is created automatically and the Workers tab is merged into Pools.
 - PostgreSQL, Redshift, and MySQL sources can pick table names from metadata and
   use an optional soft sample limit.
 - Operations adds richer run details, filters, queue metrics, failure alerts, and
