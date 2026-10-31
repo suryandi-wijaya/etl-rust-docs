@@ -456,3 +456,5 @@ Worker discovery uses container naming conventions (`etl-studio-worker-*`), not 
 The live run view tails recent node logs and the job-level error below the read-only pipeline graph.
 
 Running jobs can be stopped from Operations; workers cancel between nodes/chunks and mark the job canceled.
+
+Live streaming runs report per-chunk source/sink row movement in the Operations graph and current-node counters.
