@@ -474,3 +474,5 @@ The Operations and Live run views use a modern data-platform visual system with 
 Worker control is consolidated under System → Pools; Operations has no separate Workers tab and its Workers summary card opens Pools.
 
 Designer numeric config values are accepted whether stored as integer, float or numeric string.
+
+All numeric node/connection config values accept integers, floats and numeric strings consistently.
