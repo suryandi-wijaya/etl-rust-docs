@@ -392,7 +392,7 @@ Every image release updates this section. Newest version first.
 - Connection edit now restores non-secret values; secrets remain write-only.
 - Test connection is available from the connection card, create form, and edit form.
 - GCP connectors support service-account JSON for GCS, BigQuery, and Pub/Sub.
-- Untested connectors (S3, Redshift, Azure Blob, Snowflake, Kafka, MongoDB, RabbitMQ) are hidden until live-tested.
+- Untested connectors (S3, Redshift, Azure Blob, Snowflake, Kafka, RabbitMQ) are hidden until live-tested; MongoDB is enabled after Atlas smoke tests.
 - Workers belong to pools; a Default pool is created automatically, pools have min/max workers (min 0 scales to zero), and the Workers tab is merged into Pools.
 - PostgreSQL, Redshift, and MySQL sources can pick table names from metadata and
   use an optional soft sample limit.
