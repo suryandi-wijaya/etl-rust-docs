@@ -434,3 +434,5 @@ MIT.
 PostgreSQL nodes accept an optional libpq connection URI; Supabase direct database hosts may be IPv6-only, so use the project pooler URI on IPv4-only networks.
 
 MySQL nodes accept an optional connection URI (including Aiven `ssl-mode=REQUIRED`); set a primary key for Create mode on Aiven clusters.
+
+GCP BigQuery, GCS and Pub/Sub nodes accept service-account JSON/files, not only short-lived OAuth tokens. Live GCP tests are env-gated and skip when no service-account key is provided.
