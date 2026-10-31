@@ -387,6 +387,16 @@ building a Docker image.
 
 Every image release updates this section. Newest version first.
 
+### 0.4.0 — 2026-10-31
+
+- **Streaming:** CSV, JSONL/NDJSON, Parquet, Avro and MySQL sources plus CSV, JSON, MySQL and Parquet sinks run in bounded chunks; Calculator, JSON Flatten, Unnest and Limit/Offset stream too.
+- **Live Operations:** a read-only Designer-style run graph with per-node in/out row counters, per-chunk progress, run logs, streaming/batch mode and a stop action.
+- **Source limits:** file sources have a Row limit option, and streaming limits stop the upstream reader instead of loading the full file.
+- **Worker pools:** workers are managed in System → Pools with live CPU/RAM/disk usage, pause reasons, restart/stop controls and name-based Docker discovery.
+- **Connectors:** GCP service-account auth for BigQuery/GCS/Pub/Sub, MongoDB Atlas URIs, PostgreSQL URIs and refined MySQL/Aiven support.
+- **Designer/UI:** auto-layout, grouped thousands in numeric fields, and a modern data-platform visual refresh across Operations, Live run, Home and System.
+- **Fixes:** numeric config values saved as floats/strings are parsed correctly; streaming source limits are enforced; external worker DNS and paused-worker targeting are fixed.
+
 ### 0.3.0 — 2026-10-29
 
 - Connection edit now restores non-secret values; secrets remain write-only.
