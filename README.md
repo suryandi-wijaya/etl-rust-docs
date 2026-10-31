@@ -438,3 +438,5 @@ MySQL nodes accept an optional connection URI (including Aiven `ssl-mode=REQUIRE
 GCP BigQuery, GCS and Pub/Sub nodes accept service-account JSON/files, not only short-lived OAuth tokens. Live GCP tests are env-gated and skip when no service-account key is provided.
 
 File nodes include clickable Browse file and Browse server pickers; Browse server lists workspace data and the read-only `/data/local` mount.
+
+Operations has a Live progress modal for running queue jobs, showing node steps and rows-in/rows-out without opening the Designer.
