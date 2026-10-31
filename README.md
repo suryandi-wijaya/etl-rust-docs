@@ -430,3 +430,5 @@ Every image release updates this section. Newest version first.
 ## License
 
 MIT.
+
+PostgreSQL nodes accept an optional libpq connection URI; Supabase direct database hosts may be IPv6-only, so use the project pooler URI on IPv4-only networks.
