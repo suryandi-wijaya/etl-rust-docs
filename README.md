@@ -466,3 +466,5 @@ Streaming Limit/Offset stops reading the upstream source once the limit is reach
 File source nodes accept a Row limit option; streaming sources stop early and batch file readers truncate the result.
 
 The Designer canvas has an Auto layout button that arranges nodes in layered columns and fits the result in view.
+
+UI-created workers join the web container network by name, so they keep DNS after the web container is recreated.
