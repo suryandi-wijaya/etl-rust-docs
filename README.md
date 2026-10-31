@@ -454,3 +454,5 @@ Worker pool cards show live CPU, RAM and disk usage for each worker, along with 
 Worker discovery uses container naming conventions (`etl-studio-worker-*`), not Docker Compose project/service labels; override with `ETL_WORKER_NAME_PREFIX`.
 
 The live run view tails recent node logs and the job-level error below the read-only pipeline graph.
+
+Running jobs can be stopped from Operations; workers cancel between nodes/chunks and mark the job canceled.
