@@ -448,3 +448,5 @@ CSV/JSONL/Parquet/Avro/MySQL sources and CSV/JSON/MySQL/Parquet sinks stream in 
 Live runs and recent run history show a STREAMING or BATCH execution-mode badge.
 
 Workers advertise why they cannot accept claims (disk guard, memory guard, retiring); the run dialog skips paused workers, and a pinned job is reassigned if its target becomes paused.
+
+Worker pool cards show live CPU, RAM and disk usage for each worker, along with any pause reason.
