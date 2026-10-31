@@ -397,7 +397,7 @@ Every image release updates this section. Newest version first.
 - Operations adds richer run details, filters, queue metrics, failure alerts, and
   a compact execution-history grid.
 - The data preview dock is vertically resizable; output columns render as a list.
-- Pipelines and chains are renamed from Designer only.
+- Pipelines can be renamed from the Studio top bar; both pipelines and chains can be renamed in Designer.
 - Join can select output columns from both input tables for the next node.
 - System and Operations screens are redesigned for daily operations.
 - Docker builds reuse one image and Cargo/BuildKit caches for faster rebuilds.
