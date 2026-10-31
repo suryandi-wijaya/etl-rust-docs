@@ -452,3 +452,5 @@ Workers advertise why they cannot accept claims (disk guard, memory guard, retir
 Worker pool cards show live CPU, RAM and disk usage for each worker, along with any pause reason.
 
 Worker discovery uses container naming conventions (`etl-studio-worker-*`), not Docker Compose project/service labels; override with `ETL_WORKER_NAME_PREFIX`.
+
+The live run view tails recent node logs and the job-level error below the read-only pipeline graph.
