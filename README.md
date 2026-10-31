@@ -478,3 +478,5 @@ Designer numeric config values are accepted whether stored as integer, float or 
 All numeric node/connection config values accept integers, floats and numeric strings consistently.
 
 Designer integer config inputs display thousands separators, including source Row limit and Limit/Offset.
+
+Live run graph row counters now show explicit “in” and “out” labels.
