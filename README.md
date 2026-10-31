@@ -446,3 +446,5 @@ Admins can tail raw Docker container logs (web, scheduler, workers) from System 
 CSV/JSONL/Parquet/Avro/MySQL sources and CSV/JSON/MySQL/Parquet sinks stream in bounded batches; Calculator, JSON Flatten, Unnest and Limit/Offset also run per chunk, so large datasets no longer need to fit in worker memory for those pipelines.
 
 Live runs and recent run history show a STREAMING or BATCH execution-mode badge.
+
+Workers advertise why they cannot accept claims (disk guard, memory guard, retiring); the run dialog skips paused workers, and a pinned job is reassigned if its target becomes paused.
