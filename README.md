@@ -392,6 +392,7 @@ Every image release updates this section. Newest version first.
 - Connection edit now restores non-secret values; secrets remain write-only.
 - Test connection is available from the connection card, create form, and edit form.
 - GCP connectors support service-account JSON for GCS, BigQuery, and Pub/Sub.
+- Non-GCP cloud connectors (S3, Redshift, Azure Blob, Snowflake) are hidden until live-tested.
 - PostgreSQL, Redshift, and MySQL sources can pick table names from metadata and
   use an optional soft sample limit.
 - Operations adds richer run details, filters, queue metrics, failure alerts, and
