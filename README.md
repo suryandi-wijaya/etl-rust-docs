@@ -402,7 +402,7 @@ Every image release updates this section. Newest version first.
 - System and Operations screens are redesigned for daily operations.
 - Docker builds reuse one image and Cargo/BuildKit caches for faster rebuilds.
 - Both AMD64 and ARM64 images are built on GitHub Actions.
-- File source nodes take a CSV/Excel/JSON file directly from the local computer or a mounted local path; the global Data Library has been removed.
+- File source nodes take a CSV/Excel/JSON file directly from the local computer or a mounted `/data/local` path; the global Data Library has been removed.
 - GCP connectors accept either an access token or service-account JSON.
 - Full database runs read all rows up to the configured maximum; sample rows is preview-only.
 - UI-created workers remain standalone containers.
