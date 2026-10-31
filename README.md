@@ -462,3 +462,5 @@ Live streaming runs report per-chunk source/sink row movement in the Operations 
 Worker cards in Operations can force-stop or restart a worker; force-stop fails its running jobs so they can be retried.
 
 Streaming Limit/Offset stops reading the upstream source once the limit is reached, so a 100k limit does not load the full CSV.
+
+File source nodes accept a Row limit option; streaming sources stop early and batch file readers truncate the result.
