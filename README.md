@@ -450,3 +450,5 @@ Live runs and recent run history show a STREAMING or BATCH execution-mode badge.
 Workers advertise why they cannot accept claims (disk guard, memory guard, retiring); the run dialog skips paused workers, and a pinned job is reassigned if its target becomes paused.
 
 Worker pool cards show live CPU, RAM and disk usage for each worker, along with any pause reason.
+
+Worker discovery uses container naming conventions (`etl-studio-worker-*`), not Docker Compose project/service labels; override with `ETL_WORKER_NAME_PREFIX`.
