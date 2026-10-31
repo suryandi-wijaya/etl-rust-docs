@@ -468,3 +468,5 @@ File source nodes accept a Row limit option; streaming sources stop early and ba
 The Designer canvas has an Auto layout button that arranges nodes in layered columns and fits the result in view.
 
 UI-created workers join the web container network by name, so they keep DNS after the web container is recreated.
+
+The Operations and Live run views use a modern data-platform visual system with ambient surfaces, metric cards, a live graph and terminal-style logs.
