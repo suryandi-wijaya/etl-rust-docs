@@ -472,3 +472,5 @@ UI-created workers join the web container network by name, so they keep DNS afte
 The Operations and Live run views use a modern data-platform visual system with ambient surfaces, metric cards, a live graph and terminal-style logs.
 
 Worker control is consolidated under System → Pools; Operations has no separate Workers tab and its Workers summary card opens Pools.
+
+Designer numeric config values are accepted whether stored as integer, float or numeric string.
