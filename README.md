@@ -439,7 +439,7 @@ GCP BigQuery, GCS and Pub/Sub nodes accept service-account JSON/files, not only 
 
 File nodes include clickable Browse file and Browse server pickers; Browse server lists workspace data and the read-only `/data/local` mount.
 
-Operations has a Live progress modal for running queue jobs, showing node steps and rows-in/rows-out without opening the Designer.
+Operations has a read-only Designer-style live graph for running queue jobs, with rows-in → rows-out shown above every node; no Designer navigation is needed.
 
 Admins can tail raw Docker container logs (web, scheduler, workers) from System → Logs; this requires the Docker socket and the users:manage permission.
 
