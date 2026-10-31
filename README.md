@@ -443,4 +443,4 @@ Operations has a read-only Designer-style live graph for running queue jobs, wit
 
 Admins can tail raw Docker container logs (web, scheduler, workers) from System → Logs; this requires the Docker socket and the users:manage permission.
 
-CSV → MySQL pipelines stream in 10k-row chunks with 200-row insert batches, so large CSV exports no longer need to fit in worker memory.
+CSV/Parquet/Avro/MySQL sources and CSV/JSON/MySQL/Parquet sinks stream in bounded batches, so large datasets no longer need to fit in worker memory for those pipelines.
