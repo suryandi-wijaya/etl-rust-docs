@@ -442,3 +442,5 @@ File nodes include clickable Browse file and Browse server pickers; Browse serve
 Operations has a Live progress modal for running queue jobs, showing node steps and rows-in/rows-out without opening the Designer.
 
 Admins can tail raw Docker container logs (web, scheduler, workers) from System → Logs; this requires the Docker socket and the users:manage permission.
+
+CSV → MySQL pipelines stream in 10k-row chunks with 200-row insert batches, so large CSV exports no longer need to fit in worker memory.
