@@ -476,3 +476,5 @@ Worker control is consolidated under System → Pools; Operations has no separat
 Designer numeric config values are accepted whether stored as integer, float or numeric string.
 
 All numeric node/connection config values accept integers, floats and numeric strings consistently.
+
+Designer integer config inputs display thousands separators, including source Row limit and Limit/Offset.
