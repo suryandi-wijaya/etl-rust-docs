@@ -404,7 +404,7 @@ Every image release updates this section. Newest version first.
 - System and Operations screens are redesigned for daily operations.
 - Docker builds reuse one image and Cargo/BuildKit caches for faster rebuilds.
 - Both AMD64 and ARM64 images are built on GitHub Actions.
-- File source nodes take a CSV/Excel/JSON file directly from the local computer or a mounted `/data/local` path; uploads stream to disk up to 10 GB and the global Data Library has been removed. Full runs have no application row cap, but the engine still materialises rows in memory (see STREAMING.md in the app repo).
+- File source nodes take a CSV/Excel/JSON file directly from the local computer or a mounted `/data/local` path; uploads stream to disk up to 10 GB and the global Data Library has been removed. Full runs have no application row cap. CSV → stateless-transform → CSV/JSON chains stream in bounded chunks; other pipelines still materialise rows in memory (see STREAMING.md in the app repo).
 - GCP connectors accept either an access token or service-account JSON.
 - Full database runs read all rows up to the configured maximum; sample rows is preview-only.
 - UI-created workers remain standalone containers.
