@@ -436,3 +436,5 @@ PostgreSQL nodes accept an optional libpq connection URI; Supabase direct databa
 MySQL nodes accept an optional connection URI (including Aiven `ssl-mode=REQUIRED`); set a primary key for Create mode on Aiven clusters.
 
 GCP BigQuery, GCS and Pub/Sub nodes accept service-account JSON/files, not only short-lived OAuth tokens. Live GCP tests are env-gated and skip when no service-account key is provided.
+
+File nodes include clickable Browse file and Browse server pickers; Browse server lists workspace data and the read-only `/data/local` mount.
