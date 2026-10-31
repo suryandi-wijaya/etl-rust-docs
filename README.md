@@ -464,3 +464,5 @@ Worker cards in Operations can force-stop or restart a worker; force-stop fails 
 Streaming Limit/Offset stops reading the upstream source once the limit is reached, so a 100k limit does not load the full CSV.
 
 File source nodes accept a Row limit option; streaming sources stop early and batch file readers truncate the result.
+
+The Designer canvas has an Auto layout button that arranges nodes in layered columns and fits the result in view.
