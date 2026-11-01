@@ -336,24 +336,6 @@ workers; the web process never executes pipelines inline.
 - Runtime storage can be large; monitor disk usage on the System page.
 </details>
 
-<details>
-<summary><strong>How are image releases published?</strong></summary>
-
-Before triggering a build, update the **Changelog** section below with the new
-version and replace the light-theme screenshot in `docs/screenshots/canvas.png`
-if the UI changed.
-
-Manually: Actions → **Publish GHCR (manual)** → Run workflow.
-
-The matrix builds both architectures on native GitHub runners:
-- **amd64:** `ubuntu-latest`
-- **arm64:** `ubuntu-24.04-arm`
-
-Each build publishes only one tag: `latest-amd64` or `latest-arm64`. Pushing to
-`main` does not publish an image. Local Mac development uses `make dev` without
-building a Docker image.
-</details>
-
 ## Changelog
 
 Every image release updates this section. Newest version first.
