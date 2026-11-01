@@ -454,3 +454,5 @@ Designer integer config inputs display thousands separators, including source Ro
 Live run graph row counters now show explicit “in” and “out” labels.
 
 Schedules are managed and viewed in Operations; the System page no longer shows schedule cards or counts.
+
+System → Server shows the running Docker stack (web, scheduler, workers, autoscaler, PostgreSQL) with image, health, uptime, ports, network and container ID.
