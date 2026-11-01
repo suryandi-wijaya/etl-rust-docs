@@ -356,6 +356,7 @@ Every image release updates this section. Newest version first.
 - Database connections stop at database level; MongoDB collection and Snowflake schema are selected on each node.
 - The Recent failures card moved from System to Operations and opens the failed run.
 - The Job queue card moved from System to Operations with queued/running/success/failed counts and worker capacity.
+- The Node catalog card moved from System to Home with node, category, connector and expression counts.
 - Password and secret fields in the Connections form have an eye toggle to reveal or hide the typed value.
 
 ### 0.3.0 — 2026-10-29
