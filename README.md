@@ -325,20 +325,6 @@ workers; the web process never executes pipelines inline.
 </details>
 
 <details>
-<summary><strong>How do I build from source or develop locally?</strong></summary>
-
-Access to the private repository is required.
-
-```bash
-git clone https://github.com/suryandi-wijaya/etl-rust.git
-cd etl-rust
-make dev        # native web process: no Docker image build, runs inline
-make dev-ui     # terminal 2: incremental Trunk UI on http://127.0.0.1:8080
-make dev-docker # full Docker queue stack with scheduler and workers
-```
-</details>
-
-<details>
 <summary><strong>Security notes</strong></summary>
 
 - Change the seeded `admin` password immediately.
