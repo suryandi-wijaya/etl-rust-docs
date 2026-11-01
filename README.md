@@ -400,6 +400,7 @@ Every image release updates this section. Newest version first.
 ### Unreleased
 
 - MongoDB and HTTP/webhook nodes use the saved encrypted Connection picker instead of requiring inline credentials.
+- Password and secret fields in the Connections form have an eye toggle to reveal or hide the typed value.
 
 ### 0.3.0 — 2026-10-29
 
