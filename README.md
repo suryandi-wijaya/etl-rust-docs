@@ -397,6 +397,10 @@ Every image release updates this section. Newest version first.
 - **Designer/UI:** auto-layout, grouped thousands in numeric fields, and a modern data-platform visual refresh across Operations, Live run, Home and System.
 - **Fixes:** numeric config values saved as floats/strings are parsed correctly; streaming source limits are enforced; external worker DNS and paused-worker targeting are fixed.
 
+### Unreleased
+
+- MongoDB and HTTP/webhook nodes use the saved encrypted Connection picker instead of requiring inline credentials.
+
 ### 0.3.0 — 2026-10-29
 
 - Connection edit now restores non-secret values; secrets remain write-only.
