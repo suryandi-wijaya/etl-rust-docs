@@ -456,3 +456,5 @@ Live run graph row counters now show explicit “in” and “out” labels.
 Schedules are managed and viewed in Operations; the System page no longer shows schedule cards or counts.
 
 System → Server shows the running Docker stack (web, scheduler, workers, autoscaler, PostgreSQL) with image, health, uptime, ports, network, container ID, and live CPU, RAM, network I/O, disk I/O and PID usage.
+
+System → Server is grouped into Runtime & resources, Containers, Storage and Configuration; duplicated summary tiles were removed.
