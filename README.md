@@ -354,6 +354,7 @@ Every image release updates this section. Newest version first.
 
 - MongoDB and HTTP/webhook nodes use the saved encrypted Connection picker instead of requiring inline credentials.
 - Database connections stop at database level; MongoDB collection and Snowflake schema are selected on each node.
+- The Recent failures card moved from System to Operations and opens the failed run.
 - Password and secret fields in the Connections form have an eye toggle to reveal or hide the typed value.
 
 ### 0.3.0 — 2026-10-29
