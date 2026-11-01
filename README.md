@@ -38,8 +38,6 @@ docker pull ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
 docker pull ghcr.io/suryandi-wijaya/etl-rust:latest-arm64
 ```
 
-If the pull is denied, the package may still be private or the visibility change
-is still propagating — see the FAQ.
 
 ### 2. Create the `.env` file
 
@@ -250,19 +248,6 @@ docker pull ghcr.io/suryandi-wijaya/etl-rust:latest-arm64
 
 In Compose set `ETL_IMAGE=ghcr.io/suryandi-wijaya/etl-rust:latest-arm64` (the
 default is the amd64 tag). There is no multi-arch `latest` tag by design.
-</details>
-
-<details>
-<summary><strong>The image pull is denied.</strong></summary>
-
-The package may still be private or GitHub visibility is still propagating.
-Authenticate with a classic token that has `read:packages`:
-
-```bash
-echo "$CR_PAT" | docker login ghcr.io -u suryandi-wijaya --password-stdin
-```
-
-Then retry `docker compose pull`.
 </details>
 
 <details>
