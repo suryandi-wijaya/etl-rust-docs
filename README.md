@@ -74,6 +74,14 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "${ETL_PG_CPUS:-0.25}"
+          memory: "${ETL_PG_MEMORY:-128M}"
+        reservations:
+          cpus: "${ETL_PG_CPU_RESERVE:-0.05}"
+          memory: "${ETL_PG_MEMORY_RESERVE:-64M}"
 
   etl-studio:
     container_name: etl-studio-web
@@ -97,6 +105,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "${ETL_WEB_CPUS:-0.50}"
+          memory: "${ETL_WEB_MEMORY:-384M}"
+        reservations:
+          cpus: "${ETL_WEB_CPU_RESERVE:-0.05}"
+          memory: "${ETL_WEB_MEMORY_RESERVE:-64M}"
 
   scheduler:
     container_name: etl-studio-scheduler
@@ -112,6 +128,14 @@ services:
       ETL_SCHEDULER_INTERVAL_SECS: "20"
     volumes:
       - etl-data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: "${ETL_SCHEDULER_CPUS:-0.10}"
+          memory: "${ETL_SCHEDULER_MEMORY:-64M}"
+        reservations:
+          cpus: "${ETL_SCHEDULER_CPU_RESERVE:-0.02}"
+          memory: "${ETL_SCHEDULER_MEMORY_RESERVE:-32M}"
 
 volumes:
   etl-data:
@@ -127,6 +151,15 @@ volumes:
 > **`etl-studio-worker-<pool>-<shortid>`**. Docker names are for humans;
 > ownership/discovery uses labels (`etl.pool.id`, `etl.worker.id`). Workers are
 > not a Compose service.
+
+Resource limits are read from optional `.env` values (defaults shown in the
+snippet): `ETL_WEB_CPUS` / `ETL_WEB_MEMORY`, `ETL_SCHEDULER_CPUS` /
+`ETL_SCHEDULER_MEMORY`, `ETL_PG_CPUS` / `ETL_PG_MEMORY`, with matching
+`*_CPU_RESERVE` / `*_MEMORY_RESERVE` keys. While the stack is running, admins can
+adjust the web/scheduler/PostgreSQL limits live in
+**System → Server → Container resources**; mirror the values in `.env` to keep
+them after a container recreate. Worker CPU/memory is set per pool in
+**System → Pools & workers**.
 
 ### 4. Start the stack
 
@@ -357,6 +390,7 @@ Every image release updates this section. Newest version first.
 - **Help:** the node catalog now lives in Help → Node reference, with category chips that filter the node list.
 - **Operations:** removed the duplicate Job queue and Recent failures cards; History and Calendar are now one **History & calendar** tab.
 - **System:** merged resource usage with the container list, merged pools with workers into **Pools & workers**, and removed the obsolete Container settings card.
+- **Container resources:** admins can change CPU/memory limits of the running web, scheduler and PostgreSQL containers from System → Server (applied live with `docker update`); values should be mirrored in `.env` to survive recreation.
 - **Chains in folders:** create chains directly inside a folder (folder cards, Home toolbar and Chains dialog), and Home groups chains by folder like pipelines.
 - **Designer:** chain Save/Run now use the same topbar placement, styles and shortcuts as pipeline editing; the chain form has a Folder selector.
 - **Docker naming:** explicit singleton names (`etl-studio-web`, `etl-studio-postgres`, `etl-studio-scheduler`); pool workers are `etl-studio-worker-<pool>-<shortid>` and autoscaled workers are disposable (`--rm`). The Compose `worker`/`autoscaler` services were removed in favor of the pool autoscaler.
