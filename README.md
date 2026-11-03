@@ -60,6 +60,7 @@ name: etl-studio
 
 services:
   postgres:
+    container_name: etl-studio-postgres
     image: postgres:16-alpine
     restart: unless-stopped
     environment:
@@ -75,6 +76,7 @@ services:
       retries: 5
 
   etl-studio:
+    container_name: etl-studio-web
     image: ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
     restart: unless-stopped
     ports:
@@ -97,6 +99,7 @@ services:
         condition: service_healthy
 
   scheduler:
+    container_name: etl-studio-scheduler
     image: ghcr.io/suryandi-wijaya/etl-rust:latest-amd64
     restart: unless-stopped
     depends_on:
@@ -116,8 +119,14 @@ volumes:
 ```
 
 > The `/var/run/docker.sock` mount lets the web container create and retire
-> external workers from **System → Workers**. If you do not need that, remove the
-> socket line and set `ETL_ALLOW_EXTERNAL_WORKER_CREATION: "0"`.
+> external workers from **System → Pools & workers**. If you do not need that,
+> remove the socket line and set `ETL_ALLOW_EXTERNAL_WORKER_CREATION: "0"`.
+>
+> Container names follow one contract: **`etl-studio-web`**,
+> **`etl-studio-postgres`**, **`etl-studio-scheduler`**, and pool workers
+> **`etl-studio-worker-<pool>-<shortid>`**. Docker names are for humans;
+> ownership/discovery uses labels (`etl.pool.id`, `etl.worker.id`). Workers are
+> not a Compose service.
 
 ### 4. Start the stack
 
@@ -143,7 +152,7 @@ password — use `admin` / `admin123` first, then change it from the account men
 password.
 
 Queued runs need a worker. Workers are not started by Compose (that would make
-**Retire** restart them); create one from **System → Workers → New external
+**Retire** restart them); create one from **System → Pools & workers → New external
 worker**. It uses the same image and shares the `etl-data` volume. You can now
 create a pipeline in **Designer**, run it, and manage schedules, workers,
 connections and environments from the UI.
@@ -174,7 +183,7 @@ docker run -d --name etl-studio --restart unless-stopped `
 ```
 
 Scheduled/queued runs need the scheduler service from the YAML above and a
-worker created from **System → Workers → New external worker**.
+worker created from **System → Pools & workers → New external worker**.
 </details>
 
 <details>
@@ -294,18 +303,20 @@ pipelines (for example 300000 ms = 5 minutes).
 <details>
 <summary><strong>How do I create a worker from the UI?</strong></summary>
 
-Open **System → Workers → New external worker**. The web container creates a
+Open **System → Pools & workers → New external worker**. The web container creates a
 Docker worker container that shares the workspace and network with the web
 container; the new card appears as **External** after its first heartbeat.
 
 This requires the Docker socket mount and
 `ETL_ALLOW_EXTERNAL_WORKER_CREATION=1` (already set in the Compose file).
-The worker uses the same image and `etl-worker` binary. Already-running workers
-created this way can be edited from **System → Workers → Edit** (name,
-concurrency, max rows, CPU/memory limits). Editing recreates the container with
-the new limits, so an active job is interrupted. **Retire** stops the container
-for good; because workers are not a Compose service, Docker will not restart
-them.
+The worker uses the same image and `etl-worker` binary. Its container is named
+`etl-studio-worker-<pool>-<shortid>`; already-running workers can be edited from
+**System → Pools & workers → Edit** (name, concurrency, max rows, CPU/memory
+limits). Editing recreates the container with the new limits, so an active job is
+interrupted. **Retire** stops the container for good; because workers are not a
+Compose service, Docker will not restart them. Pool-autoscaled workers are
+created with Docker `--rm` and disappear when they exit, so retired workers do
+not pile up as stopped containers.
 
 > Mounting `/var/run/docker.sock` gives the web container host-level Docker
 > access. Keep the UI behind HTTPS/trusted users, or disable
@@ -316,7 +327,7 @@ them.
 <summary><strong>How do I get scheduled runs and multiple workers?</strong></summary>
 
 The `scheduler` service is in the YAML above. Create one or more workers from
-**System → Workers → New external worker**; each worker runs with its own
+**System → Pools & workers → New external worker**; each worker runs with its own
 concurrency. Workers exit when idle and are **not** restarted by Compose, so
 **Retire** works as expected.
 
@@ -339,6 +350,17 @@ workers; the web process never executes pipelines inline.
 ## Changelog
 
 Every image release updates this section. Newest version first.
+
+### 0.5.1 — 2026-11-03
+
+- **Navigation:** labels under the topbar icons, Help moved next to the theme switcher, and a clearer keyboard-shortcuts action.
+- **Help:** the node catalog now lives in Help → Node reference, with category chips that filter the node list.
+- **Operations:** removed the duplicate Job queue and Recent failures cards; History and Calendar are now one **History & calendar** tab.
+- **System:** merged resource usage with the container list, merged pools with workers into **Pools & workers**, and removed the obsolete Container settings card.
+- **Chains in folders:** create chains directly inside a folder (folder cards, Home toolbar and Chains dialog), and Home groups chains by folder like pipelines.
+- **Designer:** chain Save/Run now use the same topbar placement, styles and shortcuts as pipeline editing; the chain form has a Folder selector.
+- **Docker naming:** explicit singleton names (`etl-studio-web`, `etl-studio-postgres`, `etl-studio-scheduler`); pool workers are `etl-studio-worker-<pool>-<shortid>` and autoscaled workers are disposable (`--rm`). The Compose `worker`/`autoscaler` services were removed in favor of the pool autoscaler.
+- **UI/UX:** responsive touch targets, modal focus/scroll handling, skip link, better contrast, and mobile safe-area support.
 
 ### 0.5.0 — 2026-11-01
 
