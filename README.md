@@ -340,6 +340,18 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
+### 0.5.0 — 2026-11-01
+
+- **Help centre:** new top-level Help menu with an in-app manual (server/architecture, menu walkthrough, expressions, shortcuts) and a generated reference for all 71 node types with ports, usage hints and configuration fields.
+- **System → Storage:** uploaded-files browser that lists filename, extension, size and upload date, previews table/raw content, and deletes files after confirmation (permission-gated).
+- **Consistent navigation:** every top-level page uses the same page header and pill submenu; Deploy no longer shows the topbar pipeline switcher; the app footer is shared across menus.
+- **Connections:** MongoDB, HTTP and webhook nodes use saved encrypted connections instead of inline credentials; database connections stop at database level (collection/schema chosen per node); secrets stay write-only and password fields have a reveal toggle.
+- **Worker pools:** worker concurrency and CPU/memory/disk limits are derived from the owning pool; editing a pool restarts workers with the new limits, and idle workers are reconciled.
+- **New node:** JSON Transform for flattening/normalising JSON values without custom expressions.
+- **SQL sinks:** design-time (preview) validation for PostgreSQL/Redshift/MySQL, dotted identifiers, MySQL inserts converted by declared column type, and mixed-type input widening.
+- **Operations:** read-only run/live views ordered separately from Designer, chain runs in environment-filtered history, and container telemetry no longer stuck loading.
+- **Fixes:** MySQL stale legacy schema handling, MySQL `year`/mixed-type inserts, and CSV/JSON streaming edge cases.
+
 ### 0.4.0 — 2026-10-31
 
 - **Streaming:** CSV, JSONL/NDJSON, Parquet, Avro and MySQL sources plus CSV, JSON, MySQL and Parquet sinks run in bounded chunks; Calculator, JSON Flatten, Unnest and Limit/Offset stream too.
@@ -349,15 +361,6 @@ Every image release updates this section. Newest version first.
 - **Connectors:** GCP service-account auth for BigQuery/GCS/Pub/Sub, MongoDB Atlas URIs, PostgreSQL URIs and refined MySQL/Aiven support.
 - **Designer/UI:** auto-layout, grouped thousands in numeric fields, and a modern data-platform visual refresh across Operations, Live run, Home and System.
 - **Fixes:** numeric config values saved as floats/strings are parsed correctly; streaming source limits are enforced; external worker DNS and paused-worker targeting are fixed.
-
-### Unreleased
-
-- MongoDB and HTTP/webhook nodes use the saved encrypted Connection picker instead of requiring inline credentials.
-- Database connections stop at database level; MongoDB collection and Snowflake schema are selected on each node.
-- The Recent failures card moved from System to Operations and opens the failed run.
-- The Job queue card moved from System to Operations with queued/running/success/failed counts and worker capacity.
-- The Node catalog card moved from System to Home with node, category, connector and expression counts.
-- Password and secret fields in the Connections form have an eye toggle to reveal or hide the typed value.
 
 ### 0.3.0 — 2026-10-29
 
@@ -402,59 +405,3 @@ Every image release updates this section. Newest version first.
 ## License
 
 MIT.
-
-PostgreSQL nodes accept an optional libpq connection URI; Supabase direct database hosts may be IPv6-only, so use the project pooler URI on IPv4-only networks.
-
-MySQL nodes accept an optional connection URI (including Aiven `ssl-mode=REQUIRED`); set a primary key for Create mode on Aiven clusters.
-
-GCP BigQuery, GCS and Pub/Sub nodes accept service-account JSON/files, not only short-lived OAuth tokens. Live GCP tests are env-gated and skip when no service-account key is provided.
-
-File nodes include clickable Browse file and Browse server pickers; Browse server lists workspace data and the read-only `/data/local` mount.
-
-Operations has a read-only Designer-style live graph for running queue jobs, with rows-in → rows-out shown above every node; no Designer navigation is needed.
-
-Admins can tail raw Docker container logs (web, scheduler, workers) from System → Logs; this requires the Docker socket and the users:manage permission.
-
-CSV/JSONL/Parquet/Avro/MySQL sources and CSV/JSON/MySQL/Parquet sinks stream in bounded batches; Calculator, JSON Flatten, Unnest and Limit/Offset also run per chunk, so large datasets no longer need to fit in worker memory for those pipelines.
-
-Live runs and recent run history show a STREAMING or BATCH execution-mode badge.
-
-Workers advertise why they cannot accept claims (disk guard, memory guard, retiring); the run dialog skips paused workers, and a pinned job is reassigned if its target becomes paused.
-
-Worker pool cards show live CPU, RAM and disk usage for each worker, along with any pause reason.
-
-Worker discovery uses container naming conventions (`etl-studio-worker-*`), not Docker Compose project/service labels; override with `ETL_WORKER_NAME_PREFIX`.
-
-The live run view tails recent node logs and the job-level error below the read-only pipeline graph.
-
-Running jobs can be stopped from Operations; workers cancel between nodes/chunks and mark the job canceled.
-
-Live streaming runs report per-chunk source/sink row movement in the Operations graph and current-node counters.
-
-Worker cards in Operations can force-stop or restart a worker; force-stop fails its running jobs so they can be retried.
-
-Streaming Limit/Offset stops reading the upstream source once the limit is reached, so a 100k limit does not load the full CSV.
-
-File source nodes accept a Row limit option; streaming sources stop early and batch file readers truncate the result.
-
-The Designer canvas has an Auto layout button that arranges nodes in layered columns and fits the result in view.
-
-UI-created workers join the web container network by name, so they keep DNS after the web container is recreated.
-
-The Operations and Live run views use a modern data-platform visual system with ambient surfaces, metric cards, a live graph and terminal-style logs.
-
-Worker control is consolidated under System → Pools; Operations has no separate Workers tab and its Workers summary card opens Pools.
-
-Designer numeric config values are accepted whether stored as integer, float or numeric string.
-
-All numeric node/connection config values accept integers, floats and numeric strings consistently.
-
-Designer integer config inputs display thousands separators, including source Row limit and Limit/Offset.
-
-Live run graph row counters now show explicit “in” and “out” labels.
-
-Schedules are managed and viewed in Operations; the System page no longer shows schedule cards or counts.
-
-System → Server shows the running Docker stack (web, scheduler, workers, autoscaler, PostgreSQL) with image, health, uptime, ports, network, container ID, and live CPU, RAM, network I/O, disk I/O and PID usage.
-
-System → Server is grouped into Runtime & resources, Containers, Storage and Configuration; duplicated summary tiles were removed.
