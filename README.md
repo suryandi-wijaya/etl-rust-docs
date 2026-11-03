@@ -394,7 +394,7 @@ Every image release updates this section. Newest version first.
 - **Chains in folders:** create chains directly inside a folder (folder cards, Home toolbar and Chains dialog), and Home groups chains by folder like pipelines.
 - **Designer:** chain Save/Run now use the same topbar placement, styles and shortcuts as pipeline editing; the chain form has a Folder selector.
 - **Docker naming:** explicit singleton names (`etl-studio-web`, `etl-studio-postgres`, `etl-studio-scheduler`); pool workers are `etl-studio-worker-<pool>-<shortid>` and autoscaled workers are disposable (`--rm`). The Compose `worker`/`autoscaler` services were removed in favor of the pool autoscaler.
-- **UI/UX:** responsive touch targets, modal focus/scroll handling, skip link, better contrast, and mobile safe-area support.
+- **UI/UX:** responsive touch targets, modal focus/scroll handling, skip link, better contrast, and mobile safe-area support. Auto-refresh 5s now updates System numbers in place instead of rebuilding/remounting cards (no flicker).
 
 ### 0.5.0 — 2026-11-01
 
