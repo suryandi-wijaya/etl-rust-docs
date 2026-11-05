@@ -384,6 +384,13 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
+### 0.6.0 — 2026-11-05
+
+- **Local outputs:** CSV/JSON/SQLite/Parquet/Avro/Excel output nodes now have a **Save to** option to write into a mounted folder on your computer instead of the server volume, with a **Browse folder** picker to choose the destination directory.
+- **Google Cloud connection:** BigQuery, Pub/Sub and GCS now share one **Google Cloud** connection (service-account JSON, JSON file or access token). The BigQuery dataset, GCS bucket and Pub/Sub subscription/topic are configured on the node, and the project id is read from the service account when not set.
+- **Development:** `make dev-docker` rebuilds the UI automatically before starting, and the mounted local folder defaults to your home directory.
+- **Fixes:** the Docker image build now includes the build script, and the local-output folder browser lists your real folders.
+
 ### 0.5.1 — 2026-11-03
 
 - **Navigation:** labels under the topbar icons, Help moved next to the theme switcher, and a clearer keyboard-shortcuts action.
