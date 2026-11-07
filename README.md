@@ -384,6 +384,12 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
+### 0.7.0 — 2026-11-07
+
+- **AI pipeline builder:** a **Build with AI** button in the pipeline Studio turns a plain-language description into a pipeline draft, using only the existing node components. It asks follow-up questions when the request is missing details, and auto-wires generated nodes to saved connections.
+- **AI / LLM connection:** the LLM API key is stored in an encrypted connection (per environment) with provider choice — OpenAI (or any OpenAI-compatible endpoint), DeepSeek, Anthropic, Gemini and Ollama. Load the models your key is granted and test the chosen model with a real completion.
+- **Fixes:** the GCP connection test no longer false-fails for accounts with only dataset-level roles; the service-account JSON field is now multi-line; the DeepSeek/OpenAI connection test no longer trips on JSON output mode.
+
 ### 0.6.0 — 2026-11-05
 
 - **Local outputs:** CSV/JSON/SQLite/Parquet/Avro/Excel output nodes now have a **Save to** option to write into a mounted folder on your computer instead of the server volume, with a **Browse folder** picker to choose the destination directory.
