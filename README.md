@@ -455,7 +455,7 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
-### Unreleased — 2026-11-08
+### 0.8.0 — 2026-11-08
 
 - **Apache Iceberg source & sink:** new `iceberg_source` / `iceberg_sink` nodes read and write Apache Iceberg tables through a **REST catalog** with **S3 / GCS / Azure Data Lake / local** storage. The connection holds the catalog URL, warehouse location and credentials; the source samples with `sample_rows`, and the sink writes one Parquet data file per run with `create` / `append` / `replace` / `upsert` modes.
 - **Iceberg nested columns:** list/struct/map columns are read as JSON arrays/objects and written back from JSON arrays/objects.
