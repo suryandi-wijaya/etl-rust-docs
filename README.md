@@ -451,7 +451,8 @@ Every image release updates this section. Newest version first.
 
 ### Unreleased — 2026-11-08
 
-- **Apache Iceberg source & sink:** new `iceberg_source` / `iceberg_sink` nodes read and append Apache Iceberg tables through a **REST catalog** with **S3 / GCS / Azure Data Lake / local** storage. The connection holds the catalog URL, warehouse location and credentials; the source samples with `sample_rows`, and the sink appends rows as one Parquet data file per run (create-if-missing or append-only).
+- **Apache Iceberg source & sink:** new `iceberg_source` / `iceberg_sink` nodes read and write Apache Iceberg tables through a **REST catalog** with **S3 / GCS / Azure Data Lake / local** storage. The connection holds the catalog URL, warehouse location and credentials; the source samples with `sample_rows`, and the sink writes one Parquet data file per run with `create` / `append` / `replace` / `upsert` modes.
+- **Iceberg nested columns:** list/struct/map columns are read as JSON arrays/objects and written back from JSON arrays/objects.
 - **Arrow/Parquet 60 → 58.4:** the engine's Arrow/Parquet versions now match the Apache Iceberg SDK so one `RecordBatch` type flows through without a second Arrow copy in the tree.
 
 ### 0.7.0 — 2026-11-07
