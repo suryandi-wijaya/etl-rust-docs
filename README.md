@@ -8,6 +8,69 @@ Rust/WASM frontend.
 > **Container image:** `ghcr.io/suryandi-wijaya/etl-rust` — public.
 > This repository holds the public setup guide; the application source code is private.
 
+## Features
+
+### Designer
+
+- **Drag-and-drop pipeline editor** with a node palette, canvas, per-node
+  inspector and one-click auto-layout, in both light and dark themes.
+- **Chain pipelines** — orchestrate several pipelines as one chain, with the
+  same Studio-style editor, validation and run status, organised in folders.
+- **Folders** for pipelines and chains, with environment-scoped navigation.
+
+### Nodes & connectors (71 node types)
+
+- **Database:** PostgreSQL, Redshift, MySQL, MongoDB (source and sink).
+- **Analytics:** BigQuery and Snowflake (source and sink).
+- **Object storage:** Amazon S3, Google Cloud Storage, Azure Blob (source and sink).
+- **Messaging:** Kafka, Google Pub/Sub, RabbitMQ (source and sink).
+- **Files:** CSV, JSON/JSONL, Parquet, Avro, Excel (xlsx), XML, SQLite, plus
+  HTTP source and webhook sink.
+- **Transforms:** aggregate, distinct, join, union, pivot/unpivot, window/rank,
+  calculator and expressions, cast/rename/select/derive, text transform, JSON
+  flatten/transform/unnest, SQL transform, lookup, filter/sort/limit, cleanse,
+  fill-null and validate.
+- **Utilities:** notify (Slack/Telegram/email), preview, delay and trigger-pipeline.
+
+### Execution & scheduling
+
+- **Batch and streaming** execution with per-node row counters and bounded
+  streaming for large files.
+- **Worker pools** with concurrency, CPU/memory limits and automatic scale-up
+  / scale-down of disposable workers.
+- **Scheduler** for cron-driven pipeline runs with environment-scoped history.
+
+### AI pipeline builder
+
+- **Build with AI** turns a plain-language description into a pipeline draft
+  using only the existing node components, asks follow-up questions when the
+  request is missing detail, and auto-wires generated nodes to saved connections.
+- **AI / LLM connection** stores the API key encrypted, with provider choice —
+  OpenAI (or any OpenAI-compatible endpoint), DeepSeek, Anthropic, Gemini and
+  Ollama — model listing from the granted key, and a real completion test.
+
+### Connections & environments
+
+- **Encrypted connections** (AES-256-GCM) scoped per environment; secrets are
+  write-only and never written into pipeline files.
+- **Environments** (e.g. development / staging / production) isolate pipelines,
+  runs, connections and schedules, with deploy between environments.
+
+### Security
+
+- **Authentication** with users, roles and per-permission access control
+  (`pipelines:write`, `runs:read`, `users:manage`, and so on), plus rate-limited
+  login and a timezone-aware session.
+
+### Operations & monitoring
+
+- **Run history** and a live run graph with per-node in/out row counts, progress,
+  logs and a stop action.
+- **System monitoring** — server/worker status, container CPU/memory limits,
+  storage browser and log viewer.
+- **Preview** samples rows per node without running the full pipeline, and
+  **local output** writes results to a mounted folder on your computer.
+
 ## Why Rust?
 
 - **No JVM or Node.js runtime.** The backend, scheduler, worker and UI all ship
