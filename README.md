@@ -17,8 +17,10 @@ Rust/WASM frontend.
 - **Chain pipelines** — orchestrate several pipelines as one chain, with the
   same Studio-style editor, validation and run status, organised in folders.
 - **Folders** for pipelines and chains, with environment-scoped navigation.
+- **Recent designs** panel scoped to the active Pipeline / Chain tab, so a recent
+  pipeline or chain is one click away.
 
-### Nodes & connectors (73 node types)
+### Nodes & connectors (75 node types)
 
 - **Database:** PostgreSQL, Redshift, MySQL, MongoDB (source and sink).
 - **Analytics:** BigQuery and Snowflake (source and sink).
@@ -41,6 +43,8 @@ Rust/WASM frontend.
 - **Worker pools** with concurrency, CPU/memory limits and automatic scale-up
   / scale-down of disposable workers.
 - **Scheduler** for cron-driven pipeline runs with environment-scoped history.
+- **Queue mode** routes pipeline *and* chain runs to workers; a run can target a
+  pool or a specific worker from the same choose-a-worker dialog.
 
 ### AI pipeline builder
 
@@ -68,6 +72,8 @@ Rust/WASM frontend.
 
 - **Run history** and a live run graph with per-node in/out row counts, progress,
   logs and a stop action.
+- **Chain runs** appear in Operations (Jobs & History) like pipeline runs, with
+  live status, and the chain error carries the failing member pipeline's detail.
 - **System monitoring** — server/worker status, container CPU/memory limits,
   storage browser and log viewer.
 - **Preview** samples rows per node without running the full pipeline, and
@@ -457,6 +463,13 @@ Every image release updates this section. Newest version first.
 - **AND / OR nodes:** new `and` (set intersection) and `or` (union) multi-input transform nodes in the pipeline designer, mirroring the chain gates.
 - **Notification channels:** Slack and Email are now disabled (grayed out) on the Notification node; Telegram is the active channel. Existing Slack/Email pipelines keep working.
 - **Arrow/Parquet 60 → 58.4:** the engine's Arrow/Parquet versions now match the Apache Iceberg SDK so one `RecordBatch` type flows through without a second Arrow copy in the tree.
+- **Chain runs on the worker queue:** in queue mode, running a chain enqueues a chain job (visible in Operations → Jobs with live status) and a worker executes it, instead of running inline.
+- **Choose a worker for chain runs:** the chain **Run** button opens the same pool/worker dialog as pipelines, so a chain run can target a pool or a specific worker.
+- **Chain error passthrough:** when a member pipeline fails, the chain run error carries the real failure (the run-level error, else the first failed node's error) instead of a generic "unknown error".
+- **One Notification for many error branches:** the Notification node accepts multiple error-branch connections and reports every failure in one message; `{{error}}` joins all error rows. The default message now includes `{{error}}` and the fallback channel is Telegram.
+- **Handled ≠ recovered:** when only a Notification node sits on a failed node's error port, the run now stays **Failed** (a notification is a side effect, not error recovery).
+- **Designer recent designs:** the recent list now filters to pipelines or chains to match the selected Pipeline / Chain tab.
+- **Fixes:** the chain **Run** button no longer does nothing in queue mode — the worker-selection dialog is now mounted for the chain editor too.
 
 ### 0.7.0 — 2026-11-07
 
