@@ -454,6 +454,7 @@ Every image release updates this section. Newest version first.
 - **Apache Iceberg source & sink:** new `iceberg_source` / `iceberg_sink` nodes read and write Apache Iceberg tables through a **REST catalog** with **S3 / GCS / Azure Data Lake / local** storage. The connection holds the catalog URL, warehouse location and credentials; the source samples with `sample_rows`, and the sink writes one Parquet data file per run with `create` / `append` / `replace` / `upsert` modes.
 - **Iceberg nested columns:** list/struct/map columns are read as JSON arrays/objects and written back from JSON arrays/objects.
 - **Nested AND/OR condition groups:** the Filter and Validate nodes now support nested condition groups (`(A AND B) OR C`) with an **Add group** action in the conditions editor.
+- **Notification channels:** Slack and Email are now disabled (grayed out) on the Notification node; Telegram is the active channel. Existing Slack/Email pipelines keep working.
 - **Arrow/Parquet 60 → 58.4:** the engine's Arrow/Parquet versions now match the Apache Iceberg SDK so one `RecordBatch` type flows through without a second Arrow copy in the tree.
 
 ### 0.7.0 — 2026-11-07
