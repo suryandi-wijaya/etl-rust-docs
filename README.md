@@ -18,11 +18,13 @@ Rust/WASM frontend.
   same Studio-style editor, validation and run status, organised in folders.
 - **Folders** for pipelines and chains, with environment-scoped navigation.
 
-### Nodes & connectors (71 node types)
+### Nodes & connectors (73 node types)
 
 - **Database:** PostgreSQL, Redshift, MySQL, MongoDB (source and sink).
 - **Analytics:** BigQuery and Snowflake (source and sink).
 - **Object storage:** Amazon S3, Google Cloud Storage, Azure Blob (source and sink).
+- **Data lake table format:** Apache Iceberg (source and sink) through a REST
+  catalog, with S3 / GCS / Azure Data Lake / local storage backends.
 - **Messaging:** Kafka, Google Pub/Sub, RabbitMQ (source and sink).
 - **Files:** CSV, JSON/JSONL, Parquet, Avro, Excel (xlsx), XML, SQLite, plus
   HTTP source and webhook sink.
@@ -447,6 +449,11 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
+### Unreleased — 2026-11-08
+
+- **Apache Iceberg source & sink:** new `iceberg_source` / `iceberg_sink` nodes read and append Apache Iceberg tables through a **REST catalog** with **S3 / GCS / Azure Data Lake / local** storage. The connection holds the catalog URL, warehouse location and credentials; the source samples with `sample_rows`, and the sink appends rows as one Parquet data file per run (create-if-missing or append-only).
+- **Arrow/Parquet 60 → 58.4:** the engine's Arrow/Parquet versions now match the Apache Iceberg SDK so one `RecordBatch` type flows through without a second Arrow copy in the tree.
+
 ### 0.7.0 — 2026-11-07
 
 - **AI pipeline builder:** a **Build with AI** button in the pipeline Studio turns a plain-language description into a pipeline draft, using only the existing node components. It asks follow-up questions when the request is missing details, and auto-wires generated nodes to saved connections.
@@ -474,7 +481,7 @@ Every image release updates this section. Newest version first.
 
 ### 0.5.0 — 2026-11-01
 
-- **Help centre:** new top-level Help menu with an in-app manual (server/architecture, menu walkthrough, expressions, shortcuts) and a generated reference for all 71 node types with ports, usage hints and configuration fields.
+- **Help centre:** new top-level Help menu with an in-app manual (server/architecture, menu walkthrough, expressions, shortcuts) and a generated reference for all 73 node types with ports, usage hints and configuration fields.
 - **System → Storage:** uploaded-files browser that lists filename, extension, size and upload date, previews table/raw content, and deletes files after confirmation (permission-gated).
 - **Consistent navigation:** every top-level page uses the same page header and pill submenu; Deploy no longer shows the topbar pipeline switcher; the app footer is shared across menus.
 - **Connections:** MongoDB, HTTP and webhook nodes use saved encrypted connections instead of inline credentials; database connections stop at database level (collection/schema chosen per node); secrets stay write-only and password fields have a reveal toggle.
