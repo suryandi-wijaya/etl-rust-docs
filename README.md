@@ -10,15 +10,17 @@ Rust/WASM frontend.
 
 ## Features
 
-### Designer
+### Home & design
 
+- **One Home landing** for browsing and starting work: greeting, search, folders,
+  and the latest pipelines and chains in a **Recent designs** panel.
+- **Create with a name** — the New pipeline dialog names the pipeline and picks a
+  folder; chains open the chain graph editor.
 - **Drag-and-drop pipeline editor** with a node palette, canvas, per-node
   inspector and one-click auto-layout, in both light and dark themes.
 - **Chain pipelines** — orchestrate several pipelines as one chain, with the
   same Studio-style editor, validation and run status, organised in folders.
 - **Folders** for pipelines and chains, with environment-scoped navigation.
-- **Recent designs** panel scoped to the active Pipeline / Chain tab, so a recent
-  pipeline or chain is one click away.
 
 ### Nodes & connectors (75 node types)
 
@@ -258,7 +260,7 @@ password.
 Queued runs need a worker. Workers are not started by Compose (that would make
 **Retire** restart them); create one from **System → Pools & workers → New external
 worker**. It uses the same image and shares the `etl-data` volume. You can now
-create a pipeline in **Designer**, run it, and manage schedules, workers,
+create a pipeline from **Home**, run it, and manage schedules, workers,
 connections and environments from the UI.
 
 ---
@@ -454,6 +456,10 @@ workers; the web process never executes pipelines inline.
 ## Changelog
 
 Every image release updates this section. Newest version first.
+
+### Unreleased — 2026-11-09
+
+- **Home and Designer merged:** the topbar now has a single landing entry — **Home**. The standalone Designer page is gone; its **Recent designs** list (latest pipelines and chains) and the **New pipeline** name+folder dialog now live on Home, and the old `/designer` URL redirects to Home.
 
 ### 0.8.0 — 2026-11-08
 
