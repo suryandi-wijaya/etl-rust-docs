@@ -13,7 +13,8 @@ Rust/WASM frontend.
 ### Home & design
 
 - **One Home landing** for browsing and starting work: greeting, search, folders,
-  and the latest pipelines and chains in a **Recent designs** panel.
+  and a section per asset type (Folders, Pipelines, Chains), each with its own
+  create action.
 - **Create with a name** — the New pipeline dialog names the pipeline and picks a
   folder; chains open the chain graph editor.
 - **Drag-and-drop pipeline editor** with a node palette, canvas, per-node
@@ -457,9 +458,12 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
-### Unreleased — 2026-11-09
+### Unreleased — 2026-11-10
 
-- **Home and Designer merged:** the topbar now has a single landing entry — **Home**. The standalone Designer page is gone; its **Recent designs** list (latest pipelines and chains) and the **New pipeline** name+folder dialog now live on Home, and the old `/designer` URL redirects to Home.
+- **Home and Designer merged:** the topbar now has a single landing entry — **Home**. The standalone Designer page is gone; its **New pipeline** name+folder dialog now lives on Home, and the old `/designer` URL redirects to Home.
+- **Create actions live in their sections:** the New folder / New pipeline / New chain buttons now sit in the Folders, Pipelines and Chains section headers instead of the search toolbar; the Home **Recent designs** panel was removed.
+- **Consistent page design:** every menu (Home, Operations, System, Connections, Chains, Deploy, Help, Administration) shares the same page header, section headers, button hierarchy and spacing; Administration is now a regular menu page instead of a full-screen console. The rules are documented in `DESIGN_SYSTEM.md`.
+- **Unnest Array reads nested paths:** the **Unnest Array** node now accepts a dotted/bracket JSON path (e.g. `data.pengguna.pesanan`) as its array column, so nested arrays can be exploded without flattening first. A new **Drop source column** option removes the exploded value so only the merged fields remain.
 
 ### 0.8.0 — 2026-11-08
 
