@@ -383,10 +383,16 @@ deployments update the matching pipeline in place (same pipeline key) and carry
 the source version. The target card shows its environment and `vN`; every save
 bumps the version of the pipeline you are editing.
 
+The **Deploy** page compares a source and a target environment and shows three
+separate lists — **Connections**, **Pipelines** and **Chains** — deploying the
+checked assets in that order (connections first, then pipelines, then chains).
+Saved connections are copied with their encrypted configuration, so a pipeline
+that depends on them can be deployed in the same batch.
+
 Connections are scoped to environments. Deployment remaps a node's selected
 connection by **name + kind** to the matching connection in the target
-environment; if it does not exist yet the deployment fails and asks you to create
-it first.
+environment; when that copy is missing the pipeline row flags it in the compare
+list and the deploy fails until the connection is created (or deployed) there.
 
 </details>
 
@@ -458,10 +464,15 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
-### Unreleased — 2026-11-10
+### Unreleased — 2026-11-11
 
 - **Home and Designer merged:** the topbar now has a single landing entry — **Home**. The standalone Designer page is gone; its **New pipeline** name+folder dialog now lives on Home, and the old `/designer` URL redirects to Home.
 - **Create actions live in their sections:** the New folder / New pipeline / New chain buttons now sit in the Folders, Pipelines and Chains section headers instead of the search toolbar; the Home **Recent designs** panel was removed.
+- **Deploy failures are visible:** a failed batch deploy now shows a toast and a
+  persistent alert with the first error message (the automatic refresh used to
+  clear it), and pipeline rows flag connections that are missing from the target
+  environment before you press Deploy.
+- **Deploy connections, separate lists:** the Deploy page now has independent **Connections**, **Pipelines** and **Chains** lists; saved connections can be deployed between environments (encrypted config copied, matched by name + kind) and deploy first so dependent pipelines work in the same batch.
 - **Consistent page design:** every menu (Home, Operations, System, Connections, Chains, Deploy, Help, Administration) shares the same page header, section headers, button hierarchy and spacing; Administration is now a regular menu page instead of a full-screen console. The rules are documented in `DESIGN_SYSTEM.md`.
 - **Unnest Array reads nested paths:** the **Unnest Array** node now accepts a dotted/bracket JSON path (e.g. `data.pengguna.pesanan`) as its array column, so nested arrays can be exploded without flattening first. A new **Drop source column** option removes the exploded value so only the merged fields remain.
 
