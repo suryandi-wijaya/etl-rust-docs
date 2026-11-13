@@ -466,7 +466,7 @@ Every image release updates this section. Newest version first.
 
 ### Unreleased — 2026-11-13
 
-- **License:** the application is now proprietary software, free to self-host; redistribution, resale, white-labeling, and hosted or managed service offerings require a commercial license. The license text ships with the image at `/app/LICENSE`, third-party license notices at `/app/THIRD_PARTY_NOTICES.md`, and this setup-guide repository remains MIT-licensed documentation.
+- **License:** the application is now proprietary software, free to self-host; redistribution, resale, white-labeling, and hosted or managed service offerings require a commercial license. The license text ships with the image at `/app/LICENSE`, third-party license notices at `/app/THIRD_PARTY_NOTICES.md`, and this setup-guide repository is provided free to read and use for installing ETL Studio under the ETL Studio Documentation License.
 - **Home and Designer merged:** the topbar now has a single landing entry — **Home**. The standalone Designer page is gone; its **New pipeline** name+folder dialog now lives on Home, and the old `/designer` URL redirects to Home.
 - **Create actions live in their sections:** the New folder / New pipeline / New chain buttons now sit in the Folders, Pipelines and Chains section headers instead of the search toolbar; the Home **Recent designs** panel was removed.
 - **Deploy failures are visible:** a failed batch deploy now shows a toast and a
@@ -589,4 +589,7 @@ separate commercial license. The license text ships with the application image
 at `/app/LICENSE`.
 
 This documentation repository (setup guides, Compose examples, and screenshots)
-is licensed under the MIT License — see [LICENSE](LICENSE).
+is provided free to read and use for installing and operating ETL Studio under
+the [ETL Studio Documentation License](LICENSE) (© 2026 Suryandi Wijaya).
+Redistribution, modification, or inclusion of the documentation in another
+product requires written permission.

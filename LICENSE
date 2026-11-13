@@ -1,21 +1,41 @@
-MIT License
+ETL STUDIO DOCUMENTATION LICENSE
 
-Copyright (c) 2026 Suryandi Wijaya
+Version 1.0 — Effective date: 13 November 2026
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Copyright (c) 2026 Suryandi Wijaya. All rights reserved.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This repository contains the public documentation, setup guide, Docker Compose
+examples, and screenshots for ETL Studio (the "Documentation").
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. PERMISSION
+
+You may access, read, download, and use the Documentation for the purpose of
+installing, configuring, evaluating, and operating ETL Studio, including in a
+commercial environment. You may link to the Documentation.
+
+2. RESTRICTIONS
+
+You may not republish, redistribute, sublicense, sell, modify, translate, or
+create derivative works of the Documentation, in whole or in part, or include it
+in another product's documentation, without the prior written permission of the
+copyright holder.
+
+3. SOFTWARE
+
+The ETL Studio application software is proprietary and is licensed separately
+under the ETL Studio Proprietary License supplied with the application image at
+/app/LICENSE. This Documentation License does not grant any right to the
+software.
+
+4. NO WARRANTY
+
+THE DOCUMENTATION IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING WITHOUT LIMITATION ANY WARRANTY OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE
+DOCUMENTATION OR ITS USE.
+
+5. CONTACT
+
+For permissions, contact the copyright holder:
+https://github.com/suryandi-wijaya
