@@ -464,8 +464,9 @@ workers; the web process never executes pipelines inline.
 
 Every image release updates this section. Newest version first.
 
-### Unreleased — 2026-11-11
+### Unreleased — 2026-11-13
 
+- **License:** the application is now proprietary software, free to self-host; redistribution, resale, white-labeling, and hosted or managed service offerings require a commercial license. The license text ships with the image at `/app/LICENSE`, third-party license notices at `/app/THIRD_PARTY_NOTICES.md`, and this setup-guide repository remains MIT-licensed documentation.
 - **Home and Designer merged:** the topbar now has a single landing entry — **Home**. The standalone Designer page is gone; its **New pipeline** name+folder dialog now lives on Home, and the old `/designer` URL redirects to Home.
 - **Create actions live in their sections:** the New folder / New pipeline / New chain buttons now sit in the Folders, Pipelines and Chains section headers instead of the search toolbar; the Home **Recent designs** panel was removed.
 - **Deploy failures are visible:** a failed batch deploy now shows a toast and a
@@ -581,4 +582,11 @@ Every image release updates this section. Newest version first.
 
 ## License
 
-MIT.
+The ETL Studio application software is proprietary and is licensed under the
+ETL Studio Proprietary License. Self-hosting is free of charge; redistribution,
+resale, white-labeling, and hosted or managed service offerings require a
+separate commercial license. The license text ships with the application image
+at `/app/LICENSE`.
+
+This documentation repository (setup guides, Compose examples, and screenshots)
+is licensed under the MIT License — see [LICENSE](LICENSE).
